@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.sqlite
+*.sqlite-journal
+*.db
+.env
+
+# Personal / task materials — not part of the submission deliverable
+hr-email.txt
+TODO.md
+Ottodot_Full_Stack_Take_Home_Instructions.docx - Google Dokumen.pdf
