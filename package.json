@@ -1,7 +1,7 @@
 {
   "name": "ottodot-trial-booking",
   "version": "1.0.0",
-  "description": "Ottodot trial class booking system — take-home task",
+  "description": "Ottodot trial class booking system, take-home task",
   "private": true,
   "type": "module",
   "main": "dist/api/server.js",
