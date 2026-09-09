@@ -39,17 +39,25 @@ View a roster:
 curl http://localhost:3000/classes/2/roster
 ```
 
+**Demo - happy path** (all 4 endpoints, in order: Finn books the still-open Algebra class, submits, pays, and shows up on the roster):
+```bash
+curl -X POST http://localhost:3000/bookings -H "Content-Type: application/json" -d '{"studentId":6,"trialClassId":1}'   # POST /bookings -> draft, id 6
+curl -X POST http://localhost:3000/bookings/6/submit                                                                    # POST /bookings/:id/submit -> pending_payment, seat reserved
+curl -X POST http://localhost:3000/bookings/6/pay -H "Content-Type: application/json" -d '{"success":true}'             # POST /bookings/:id/pay -> confirmed
+curl http://localhost:3000/classes/1/roster                                                                             # GET /classes/:id/roster -> Finn now included, 2/4 confirmed
+```
+
 **Demo the last-seat race** (Physics has 1 seat left, Finn and Gia both go for it):
 ```bash
-curl -X POST http://localhost:3000/bookings -H "Content-Type: application/json" -d '{"studentId":6,"trialClassId":2}'   # draft, id 6
-curl -X POST http://localhost:3000/bookings -H "Content-Type: application/json" -d '{"studentId":7,"trialClassId":2}'   # draft, id 7
-curl -X POST http://localhost:3000/bookings/6/submit   # succeeds -> pending_payment
-curl -X POST http://localhost:3000/bookings/7/submit   # 409 "trial class 2 is full"
+curl -X POST http://localhost:3000/bookings -H "Content-Type: application/json" -d '{"studentId":6,"trialClassId":2}'   # draft, id 7
+curl -X POST http://localhost:3000/bookings -H "Content-Type: application/json" -d '{"studentId":7,"trialClassId":2}'   # draft, id 8
+curl -X POST http://localhost:3000/bookings/7/submit   # succeeds -> pending_payment
+curl -X POST http://localhost:3000/bookings/8/submit   # 409 "trial class 2 is full"
 ```
 
 **Demo a mock payment** (Finn pays for the booking he just reserved):
 ```bash
-curl -X POST http://localhost:3000/bookings/6/pay -H "Content-Type: application/json" -d '{"success":true}'
+curl -X POST http://localhost:3000/bookings/7/pay -H "Content-Type: application/json" -d '{"success":true}'
 ```
 
 ## What was built
