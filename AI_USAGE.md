@@ -11,7 +11,7 @@ Antigravity IDE with Claude Code (Claude Sonnet 5) as an interactive pair-progra
 - Designing and writing the schema, service-layer logic, API routes, seed script, and test suite, with me reviewing and steering after each step rather than accepting one large generated dump.
 - Drafting this README and this file.
 
-I worked in small increments on purpose: pick a design decision → implement just that piece → run the tests/build → review → move on. That kept each change small enough to actually verify, rather than trusting a large batch of generated code.
+I worked in small increments on purpose: pick a design decision, implement just that piece, run the tests/build, review, move on. That kept each change small enough to actually verify, rather than trusting a large batch of generated code. I made sure to run the tests and build after each step, not just at the end, to catch issues early.
 
 ## Where AI helped me move faster
 
